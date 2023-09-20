@@ -3,14 +3,14 @@ import { useGetAllHospitalsQuery } from '../../services/hospApi'
 
 function AddBed() {
     var {isLoading:isHospitalsLoading,data:hopitals}=useGetAllHospitalsQuery();
-    var [newBed,setNewBed]=useState({
-        bedStatus:'open',
-        bedtype:"",
-        bedPrice:0,
-        patients:[]
-    })
+    // var [newBed,setNewBed]=useState({
+    //     bedStatus:'open',
+    //     bedtype:"",
+    //     bedPrice:0,
+    //     patients:[]
+    // })
     var [bedTypes,setBedTypes]=useState([])
-    var [selectedHospital,setSlectedHospital]=useState(null)
+    // var [selectedHospital,setSlectedHospital]=useState(null)
     function updateBedTypes(hn){
       setBedTypes(JSON.parse(hn).bedTypes);
     }
