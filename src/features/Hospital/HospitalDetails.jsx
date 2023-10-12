@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useAddBedsMutation, useGetHospitalDetailsByIdQuery, useLazyGetHospitalDetailsByIdQuery } from '../../services/hospApi';
 import _ from 'lodash';
 
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from '../../firebase';
 const provider = new GoogleAuthProvider();
 
 function HospitalDetails() {
@@ -47,7 +48,6 @@ function HospitalDetails() {
     }
     function updateHospital(){
         
-        const auth = getAuth();
         signInWithPopup(auth,provider)
         .then((result) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
