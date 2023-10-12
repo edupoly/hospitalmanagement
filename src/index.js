@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import AddBed from './features/AdminDashboad/AddBed';
 import HospitalDetails from './features/Hospital/HospitalDetails';
+import Form from './shared/Form';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +37,13 @@ const router = createBrowserRouter([
       },
       {
         path:"/details/:id",
-        element:<HospitalDetails/>
+        element:<HospitalDetails/>,
+        children:[
+          {
+            path:"/details/:id/form",
+            element:<Form></Form>
+          }
+        ]
       },
       {
         path:"",

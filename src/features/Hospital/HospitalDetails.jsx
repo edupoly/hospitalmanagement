@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useAddBedsMutation, useGetHospitalDetailsByIdQuery, useLazyGetHospitalDetailsByIdQuery } from '../../services/hospApi';
 import _ from 'lodash';
-
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { useGetAlladminsQuery } from '../../services/hospApi';
+import Form from '../../shared/Form';
 const provider = new GoogleAuthProvider();
-
 function HospitalDetails() {
     var p = useParams();
+    var {isLoading,data:admin}=useGetAlladminsQuery();
+    console.log(admin);
+    var navigat=useNavigate()
     var {isLoading,data}=useGetHospitalDetailsByIdQuery(p.id);
     var [updateBeds]=useAddBedsMutation()
     var [getHospitalDetails]=useLazyGetHospitalDetailsByIdQuery();
@@ -58,7 +60,14 @@ function HospitalDetails() {
             console.log(beds)
             console.log(user)
             console.log(token)
-
+           var x=admin.filter((s)=>{
+                return(s.email==user.email);})
+                console.log(x>0)
+                if(x){
+                    alert("please enter another email")
+                    navigat(`form`)
+                }
+                else{
             var temp = Object.values(beds).flat(1);
             temp = temp.map((b)=>{
                 if(b.bedId===selectedBed){
@@ -73,6 +82,7 @@ function HospitalDetails() {
                 alert("Update Success...");
                 getHospitalDetails(p.id)
             })
+        }
         }).catch((error) => {
             console.log(error)
         });
@@ -110,6 +120,7 @@ function HospitalDetails() {
                         }
                     </ul>
                     <button onClick={()=>{updateHospital()}}>Book IT</button>
+                    <Outlet></Outlet>
                 </div>
             )
         }
