@@ -7,6 +7,7 @@ function AdminDashBoard() {
         <h1>AdminDashBoard</h1>
         <Link to="addHospital"><button className='btn btn-success'>+ Add Hospital</button></Link>
         <Link to="addBed"><button className='btn btn-info'>+ Add Bed</button></Link>
+        <Link to="discharge"><button className='btn btn-primary'>Discharge patient</button></Link>
         <Outlet></Outlet>
     </div>
   )
