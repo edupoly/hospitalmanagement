@@ -9,7 +9,7 @@ export const hospApi = createApi({
     getAllHospitals: builder.query({
       query: () => `hospitals`,
     }),
-    getAlladmins: builder.query({
+    getadmins: builder.query({
       query: () => `admins`,
     }),
     getHospitalDetailsById: builder.query({
@@ -18,7 +18,7 @@ export const hospApi = createApi({
     addHospital: builder.mutation({
       query:(newHosp)=>{
         return {
-          url:``,
+          url:`hospitals/`,
           method:'POST',
           body:newHosp
         }
@@ -26,9 +26,9 @@ export const hospApi = createApi({
     }),
     addBeds:builder.mutation({
       query:(details)=>{
-        console.log(details)
+        console.log(details);
         return {
-          url:`/${details.id}`,
+          url:`hospitals/${details.id}`,
           method:'PUT',
           body:details
         }
@@ -46,5 +46,5 @@ export const {
     useGetHospitalDetailsByIdQuery,
     useLazyGetAllHospitalsQuery,
     useLazyGetHospitalDetailsByIdQuery,
-    useGetAlladminsQuery
+    useGetadminsQuery
  } = hospApi
