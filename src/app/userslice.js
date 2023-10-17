@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
     isAdmin : false,
     user : null
@@ -15,5 +16,6 @@ export const userSlice = createSlice({
         }
     }
 })
+
 export const { changeUser } = userSlice.actions
 export default userSlice.reducer
