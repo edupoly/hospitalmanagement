@@ -5,7 +5,7 @@ import { auth } from '../firebase';
 import '../App.css';
 import { useGetadminsQuery } from '../services/hospApi';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeUser } from '../app/userslice';
+import { changeUser } from '../app/userSlice';
 const provider = new GoogleAuthProvider();
 
 function Header() {
