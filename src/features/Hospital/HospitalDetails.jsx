@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeUser } from '../../app/userSlice';
+import { changeUser } from '../../app/userslice';
 const provider = new GoogleAuthProvider();
 function HospitalDetails() {
     const dispatch = useDispatch();
