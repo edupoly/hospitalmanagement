@@ -18,7 +18,7 @@ export const hospApi = createApi({
     addHospital: builder.mutation({
       query:(newHosp)=>{
         return {
-          url:`hospitals/`,
+          url:`hospitals`,
           method:'POST',
           body:newHosp
         }
@@ -33,7 +33,7 @@ export const hospApi = createApi({
           body:details
         }
       }
-    })
+    }),
   }),
 })
 // Export hooks for usage in functional components, which are
@@ -47,3 +47,4 @@ export const {
     useLazyGetHospitalDetailsByIdQuery,
     useGetadminsQuery,
  } = hospApi;
+
