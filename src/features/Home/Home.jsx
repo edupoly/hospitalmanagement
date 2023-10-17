@@ -3,7 +3,8 @@ import { useGetAllHospitalsQuery } from '../../services/hospApi'
 import { Link } from 'react-router-dom'
 
 function Home() {
-  var {isLoading,data}=useGetAllHospitalsQuery()
+  var {isLoading,data}=useGetAllHospitalsQuery();
+  console.log(data)
   return (
     <div>
         <h1>Home</h1>
