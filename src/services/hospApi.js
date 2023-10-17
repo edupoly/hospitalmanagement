@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const hospApi = createApi({
   reducerPath: 'hospApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/'}),
   endpoints: (builder) => ({
     getAllHospitals: builder.query({
       query: () => `hospitals`,
@@ -36,7 +36,6 @@ export const hospApi = createApi({
     })
   }),
 })
-
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
 export const { 
@@ -46,5 +45,5 @@ export const {
     useGetHospitalDetailsByIdQuery,
     useLazyGetAllHospitalsQuery,
     useLazyGetHospitalDetailsByIdQuery,
-    useGetadminsQuery
- } = hospApi
+    useGetadminsQuery,
+ } = hospApi;

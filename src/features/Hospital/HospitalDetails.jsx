@@ -13,10 +13,10 @@ function HospitalDetails() {
     var {data:admins} = useGetadminsQuery();
     var p = useParams();
     var {isLoading,data}=useGetHospitalDetailsByIdQuery(p.id);
-    var [updateBeds]=useAddBedsMutation()
+    var [updateBeds]=useAddBedsMutation();
     var [getHospitalDetails]=useLazyGetHospitalDetailsByIdQuery();
-    var [beds,setBeds] = useState(null)
-    var [bedTypes,setBedTypes] = useState([])
+    var [beds,setBeds] = useState(null);
+    var [bedTypes,setBedTypes] = useState([]);
     var [selectedBed,setSelectedBed] = useState(-1)
     var [ isAdminBooking , setIsadminbooking ] = useState(null)
     var [ name , setName ] = useState(null);
@@ -54,7 +54,7 @@ function HospitalDetails() {
         function updateHospital(){
         if(user){
             if(isAdmin){
-                setIsadminbooking(1)
+                setIsadminbooking(1);
             }
             if(!isAdmin){
                 var temp = Object.values(beds).flat(1);
@@ -81,8 +81,9 @@ function HospitalDetails() {
                 const user = result.user;
                 console.log(token)
                 var xyz = admins.filter((admin)=>{
-                    return (admin===user.email)
+                    return (admin.email===user.email)
                 })
+                console.log(xyz)
                 var userDetails = {
                     name:user.displayName,
                     mailId:user.email,
@@ -124,7 +125,7 @@ function HospitalDetails() {
                 return b
             }
         })
-        data = {...data,beds:[...temp]}
+        data={...data,beds:[...temp]}
         updateBeds(data).then(()=>{
             alert("Update Success...");
             getHospitalDetails(p.id);
@@ -166,7 +167,7 @@ function HospitalDetails() {
             )
         }
         {
-            isAdminBooking &&
+        isAdminBooking &&
             <div className='border border-2 border-dark p-3 m-3 text-center'>
                 <h4 className='text-danger'>Please enter patient details to proceed to booking</h4>
                 <h4 className='p-0'>Patient Name:</h4>
@@ -179,5 +180,4 @@ function HospitalDetails() {
     </div>
   )
 }
-
-export default HospitalDetails
+export default HospitalDetails;
