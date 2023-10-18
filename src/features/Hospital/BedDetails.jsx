@@ -12,24 +12,19 @@ function BedDetails() {
    function Discharge(event,bedid){ 
     console.log(data)
     console.log(bedid)
-    {
-        isLoading && <h4>Loading...</h4>
-    }
-    {
-        !isLoading && data.beds.map((bed)=>{
-            return bed.patients.map((patient)=>{
-                console.log(bed.bedStatus)
-                console.log(patient.status)
-                if(bed.bedId===bedid){
-                    return (
-                        bed.bedStatus="open",
-                        patient.status="discharged"
-
+    data.beds.map((bed)=>{
+         return bed.patients.map((patient)=>{
+            console.log(bed.bedStatus)
+            console.log(patient.status)
+            if(bed.bedId===bedid){
+                return (
+                    bed.bedStatus="open",
+                    patient.status="discharged"
                     )
                 }
             })
         })
-    }
+    
 }
 return (
 <div>
