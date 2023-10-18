@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGetHospitalDetailsByIdQuery} from '../../services/hospApi'
+import { useGetHospitalDetailsByIdQuery,useAddBedsMutation,useLazyGetHospitalDetailsByIdQuery } from '../../services/hospApi'
 import { useParams } from 'react-router-dom'
 function BedDetails() {
     var p = useParams()
@@ -8,23 +8,34 @@ function BedDetails() {
     console.log(x)
     var {isLoading,data} = useGetHospitalDetailsByIdQuery(p.id)
     console.log(data)
+    const [ updatehsptl ] = useAddBedsMutation()
+    const [ refresh ] = useLazyGetHospitalDetailsByIdQuery()
   // var [ubed,setubed] = React.useState()
-   function Discharge(event,bedid){ 
+   function Discharge(bedid){ 
     console.log(data)
     console.log(bedid)
-    data.beds.map((bed)=>{
-         return bed.patients.map((patient)=>{
-            console.log(bed.bedStatus)
-            console.log(patient.status)
-            if(bed.bedId===bedid){
-                return (
-                    bed.bedStatus="open",
-                    patient.status="discharged"
-                    )
+    var temp = data.beds.map((bed)=>{
+        if(bed.bedId===bedid){
+            var tempPatients = bed.patients.map((patient)=>{
+                if(patient.status==="ongoing"){
+                    return {...patient,status:"discharged"}
+                }
+                else{
+                    return{...patient}
                 }
             })
-        })
-    
+            return {...bed,patients:[...tempPatients],bedStatus:"open"}
+        }
+        else{
+            return bed
+        }
+    })
+    var updatedhsptl = {...data,beds:[...temp]}
+    console.log(updatedhsptl)
+    updatehsptl({...updatedhsptl}).then(()=>{
+        alert("patient discharged succesfully")
+        refresh(p.id)
+    })
 }
 return (
 <div>
@@ -53,7 +64,7 @@ return (
                             <td>{bed.bedId}</td>
                             <td>{bed.bedtype}</td>
                             <td>{patient.name}</td>
-                            <td><button type='submit' className='btn btn-warning' onClick={(event)=>{Discharge(event,bed.bedId)}}>Discharge</button></td>
+                            <td><button type='submit' className='btn btn-warning' onClick={()=>{Discharge(bed.bedId)}}>Discharge</button></td>
                         </tr>
 
                     )
