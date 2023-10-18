@@ -15,6 +15,7 @@ function HospitalDetails() {
     var [beds,setBeds] = useState(null)
     var [bedTypes,setBedTypes] = useState([])
     var [selectedBed,setSelectedBed] = useState(-1)
+    
     useEffect(()=>{
         if(data){
             var bedsByCategory = _.groupBy(data.beds,"bedtype");
@@ -27,7 +28,12 @@ function HospitalDetails() {
             setBedTypes([...temp])
         }
     },[data])
-    
+    console.log(data)
+    //data.beds.map((a)=>{
+      //  return a.patients.map((patient)=>{
+      //      return {...patient,pstatus:"ongoing"}
+      //  })
+    //})
     function occupyBed(bid){
         console.clear();
         console.log(data)
@@ -51,18 +57,19 @@ function HospitalDetails() {
         signInWithPopup(auth,provider)
         .then((result) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
+           // const token = credential.accessToken;
             const user = result.user;
             
             console.clear();
             console.log(beds)
             console.log(user)
-            console.log(token)
+            //console.log(token)
+           
 
             var temp = Object.values(beds).flat(1);
             temp = temp.map((b)=>{
                 if(b.bedId===selectedBed){
-                    return {...b,patients:[...b.patients,{useremail:user.email,token:user.accessToken}]}
+                    return {...b,patients:[...b.patients,{email:user.email,status:"ongoing",name:user.displayName}]}
                 }
                 else{
                     return b
@@ -79,6 +86,8 @@ function HospitalDetails() {
 
         
     }   
+ 
+    
   return (
     <div>
         <h1>HospitalDetails</h1>
