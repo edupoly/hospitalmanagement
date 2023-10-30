@@ -34,6 +34,16 @@ export const hospApi = createApi({
         }
       }
     }),
+    updateBeds:builder.mutation({
+      query:(details)=>{
+        return {
+          url: ``,
+          method:'PUT',
+          body:details
+        }
+      }
+
+    })
   }),
 })
 // Export hooks for usage in functional components, which are
@@ -46,5 +56,6 @@ export const {
     useLazyGetAllHospitalsQuery,
     useLazyGetHospitalDetailsByIdQuery,
     useGetadminsQuery,
- } = hospApi;
+    useUpdateBedsMutation
+ } = hospApi
 

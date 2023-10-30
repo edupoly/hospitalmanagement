@@ -21,6 +21,7 @@ function HospitalDetails() {
     var [ isAdminBooking , setIsadminbooking ] = useState(null)
     var [ name , setName ] = useState(null);
     var [ mobile , setMobile ] = useState(null);
+
     useEffect(()=>{
         if(data){
             var bedsByCategory = _.groupBy(data.beds,"bedtype");
@@ -33,7 +34,12 @@ function HospitalDetails() {
             setBedTypes([...temp])
         }
     },[data])
-    
+    console.log(data)
+    //data.beds.map((a)=>{
+      //  return a.patients.map((patient)=>{
+      //      return {...patient,pstatus:"ongoing"}
+      //  })
+    //})
     function occupyBed(bid){
         console.clear();
         console.log(data)
@@ -51,6 +57,7 @@ function HospitalDetails() {
         var bedsByCategory = _.groupBy(tempBeds,"bedtype");
         setBeds(bedsByCategory)
     }
+
         function updateHospital(){
         if(user){
             if(isAdmin){
