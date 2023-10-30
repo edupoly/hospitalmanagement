@@ -43,7 +43,6 @@ const router = createBrowserRouter([
       {
         path:"/details/:id",
         element: <HospitalDetails></HospitalDetails>
-
       },
       {
         path:"admindashboard/discharge/details/:id",

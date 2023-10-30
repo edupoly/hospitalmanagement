@@ -51,7 +51,7 @@ function AddBed() {
             )
         }
         {
-            selectedHospital && selectedHospital.bedTypes.length>0 && (
+        selectedHospital && selectedHospital.bedTypes.length>0 && (
                 <>
                     <select onChange={(e)=>{setSelectedBedType(e.target.value)}}>
                         <option value={null} disabled seleted>Please Select</option>
@@ -64,11 +64,11 @@ function AddBed() {
                     <br />
                     <input type="number" placeholder="Enter Bed Price" onChange={(e)=>{setBedPrice(e.target.value)}}/>
                     <br />
-                </>
-                
+                </>       
+
             )
         }
-        
+
         <br />
         <button onClick={()=>{saveBed()}}>Save Beds</button>
     </div>

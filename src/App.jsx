@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import Header from './shared/Header';
 import { Outlet } from 'react-router-dom';
-
 import { initializeApp } from 'firebase/app';
 import {getAuth } from 'firebase/auth';
 import { firebaseConfig } from './firebase';
