@@ -60,11 +60,11 @@ function Header() {
                     {
                         user &&
                         <div className="dropdown">
+                            <span className='text-white' >Howdy, {user.name}</span>
                             <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img style={{"width":"25px","height":"25px","border-radius":"50%"}} src={user.image} />
                             </button>
                             <ul className="dropdown-menu profile-menu" aria-labelledby="dropdownMenuButton1">
-                              <span>Howdy, {user.name}</span>
                               <li><button class="dropdown-item" onClick={()=>{logOut()}}>Logout</button></li>
                             </ul>
                         </div>

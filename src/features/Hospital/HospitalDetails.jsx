@@ -88,7 +88,7 @@ function HospitalDetails() {
                 const user = result.user;
                 console.log(token)
                 var xyz = admins.filter((admin)=>{
-                    return (admin.email===user.email)
+                    return (admin===user.email)
                 })
                 console.log(xyz)
                 var userDetails = {
